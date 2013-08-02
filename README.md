@@ -23,3 +23,5 @@ $ git push
 $ cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3
 $ sh add-user.sh
 ```
+
+6. Sample WebSocket application will be running at http://wildfly-{domain-name}.rhcloud.com/websocket-reverse-echo-example
