@@ -2,7 +2,5 @@
 # The logic to start up your application should be put in this
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
-ln -s $OPENSHIFT_DATA_DIR $OPENSHIFT_REPO_DIR/wildfly-8.0.0.Alpha3/standalone/data
-
-cd $OPENSHIFT_REPO_DIR/wildfly-8.0.0.Alpha3
+cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3
 nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
