@@ -4,16 +4,16 @@
 # $OPENSHIFT_DIY_IP:8080
 set -x
 cd $OPENSHIFT_DATA_DIR 
-if [ -d $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3 ]
+if [ -d $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1 ]
 then
-	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3/standalone/deployments
-	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3
+	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1/standalone/deployments
+	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1
 	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
 else
-	wget http://download.jboss.org/wildfly/8.0.0.Alpha3/wildfly-8.0.0.Alpha3.zip
-	unzip wildfly-8.0.0.Alpha3.zip 
-	rm wildfly-8.0.0.Alpha3.zip	
-	cd wildfly-8.0.0.Alpha3/standalone/configuration
+	wget http://download.jboss.org/wildfly/8.0.0.Beta1/wildfly-8.0.0.Beta1.zip
+	unzip wildfly-8.0.0.Beta1.zip 
+	rm wildfly-8.0.0.Beta1.zip	
+	cd wildfly-8.0.0.Beta1/standalone/configuration
 	OLD_VALUE=jboss.bind.address.management:127.0.0.1
 	NEW_VALUE=env.OPENSHIFT_DIY_IP
 	sed -i "s|$OLD_VALUE|$NEW_VALUE|g" standalone.xml
@@ -24,7 +24,7 @@ else
 	NEW_VALUE=env.OPENSHIFT_DIY_IP
 	sed -i "s|$OLD_VALUE|$NEW_VALUE|g" standalone.xml
 	sed -i "s#scan-interval=\"5000\"#scan-interval=\"5000\" deployment-timeout=\"300\"#g" standalone.xml
-	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3/standalone/deployments
-	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Alpha3
+	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1/standalone/deployments
+	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1
 	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
 fi
