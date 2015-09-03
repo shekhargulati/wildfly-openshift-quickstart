@@ -8,7 +8,7 @@ if [ -d $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1 ]
 then
 	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1/standalone/deployments
 	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1
-	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
+	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > ${OPENSHIFT_LOG_DIR}server.log 2>&1 &
 else
 	wget http://download.jboss.org/wildfly/8.0.0.Beta1/wildfly-8.0.0.Beta1.zip
 	unzip wildfly-8.0.0.Beta1.zip 
@@ -26,5 +26,5 @@ else
 	sed -i "s#scan-interval=\"5000\"#scan-interval=\"5000\" deployment-timeout=\"300\"#g" standalone.xml
 	cp $OPENSHIFT_REPO_DIR/diy/*.war $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1/standalone/deployments
 	cd $OPENSHIFT_DATA_DIR/wildfly-8.0.0.Beta1
-	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
+	nohup bin/standalone.sh -b $OPENSHIFT_DIY_IP -bmanagement=$OPENSHIFT_DIY_IP > ${OPENSHIFT_LOG_DIR}server.log 2>&1 &
 fi
